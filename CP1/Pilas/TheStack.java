@@ -13,26 +13,40 @@ public class TheStack<Type> implements TheStackInterface<Type> {
     }
 
     public Boolean push(Type item) {
-        var available = _stack.size() < _capacity;
+
+//Improvement: Se tiene que retornar un dato booleano y hay que especificar a que stack se le esta haciendo push
+        boolean available = _stack.size() < _capacity;
+
         if (available) {
-            push(item);
+            _stack.push(item);        
         }
         return available;
     }
 
     public Type pop() {
+// Update: retornar null si la pila está vacía
+
+        if (_stack.isEmpty()) {
+            return null;
+        }
         return _stack.pop();
     }
 
     public Type peek() {
+// Update: retornar null si la pila está vacía
+        if (_stack.isEmpty()) {
+            return null;
+        }
         return _stack.peek();
     }
 
-    public boolean empty() {
+// Errors: hacer coincidir con la interface (Boolean / Integer)
+    public Boolean empty() {
+
         return _stack.isEmpty();
     }
 
-    public int size() {
+    public Integer size() {
         return _stack.size();
     }
 

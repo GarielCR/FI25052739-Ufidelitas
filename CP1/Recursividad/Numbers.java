@@ -2,7 +2,7 @@ public class Numbers {
 
     private static double N = 25;
 
-    public static double formula(double z) {
+    public static double formula(double z) { 
         return round((z + Math.sqrt(4 + Math.pow(z, 2))) / 2);
     }
 
@@ -14,15 +14,33 @@ public class Numbers {
         return round(iterative(z, N) / iterative(z, N - 1));
     }
 
+
     private static double recursive(double z, double n) {
-        return n == 0 || n == 1 ? z : recursive(z, n - 1) + recursive(z, n - 2);
+// Improvement: Lo que se retorna en caso de n=0 o n=1 es 1 no z, ademas este valor se debe multiplicar por f(z, n -1)
+
+        return n == 0 || n == 1 ? 1 : z * recursive(z, n - 1) + recursive(z, n - 2);
     }
 
-    private static double iterative(double z, double n) {
-        return 1.0;
+    private static double iterative(double z, double n) {     
+//Update: implementación del método iterativo con bucle for
+
+        double a = 1;
+        double b = 1;
+        double aux;
+
+        for (int i = 2; i <= n; i++) {
+            aux = z * b + a;
+            a = b;
+            b = aux;
+        }
+        return b;
+
     }
 
-    private double round(double value) {
+
+    private static double round(double value) {
+// Update: el metodo tiene que ser static ya que es llamado de metodos static
+
         var ROUND = 10000000000.0;
         return Math.round(value * ROUND) / ROUND;
     }

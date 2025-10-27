@@ -1,6 +1,10 @@
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.Random;
+
+
+//PD: Los metodos usados para dequeue y getFront (pollFirst y peekFirst) los encontre con ayuda de ChatGPT ya qwue no los conocia
 
 public class TheQueue<Type> implements TheQueueInterface<Type> {
 
@@ -15,11 +19,15 @@ public class TheQueue<Type> implements TheQueueInterface<Type> {
     }
 
     public Type dequeue() {
-        return null;
+//Improvement: pollFirst() Devuelve y elimina el frente de la cola o null si esta vacia, sin condicionales
+
+        return _queue.pollFirst(); 
     }
 
     public Type getFront() {
-        return null;
+//Improvement: peekFirst() Devuelve el frente de la cola sin eliminarlo o null si está vacía, sin condicionales
+
+        return _queue.peekFirst();
     }
 
     public boolean isEmpty() {
@@ -31,9 +39,18 @@ public class TheQueue<Type> implements TheQueueInterface<Type> {
     }
 
     public String[] getCodons() {
+// Update: se crea el arreglo de codones en el cual se hace uso del metodo dequeue para obtener los elementos de la cola en forma de Tripletas, sin exceder el limite de la cola
         var size = _queue.size();
         String[] codons = new String[size / 3];
-        return codons;
+
+        for (int i = 0; i < size/3; i++) {
+            String a = String.valueOf(dequeue());
+            String b = String.valueOf(dequeue());
+            String c = String.valueOf(dequeue());
+            codons[i] = a + b + c;
+        }         
+       return codons;
+
     }
 
     public String print() {
