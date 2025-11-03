@@ -1,0 +1,8 @@
+{
+    "chat.disableAIFeatures": false,
+    "github.copilot.chat.codesearch.enabled": true,
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.referencedLibraries": []
+}
